@@ -6,9 +6,13 @@ import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
+import { RepoListComponent } from './repo-list/repo-list.component';
+import { RepoListService } from './repo-list/repo-list.service';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RepoListComponent
   ],
   imports: [
     BrowserModule,
@@ -16,7 +20,9 @@ import { AppComponent } from './app.component';
     HttpModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    RepoListService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
