@@ -6,8 +6,9 @@ export class RepoListService {
 
   constructor(private http: Http) { }
 
-  getRepoList() {
-    return this.http.get('http://localhost:8080/repos?lang=javascript')
+  getRepoList(...languages) {
+    let url = `http://localhost:8080/repos?lang=${languages}`;
+    return this.http.get(url)
       .map(response => {
         let json = response.json();
         return json.data.items;

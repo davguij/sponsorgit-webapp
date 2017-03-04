@@ -1,7 +1,10 @@
+.filters {
+	margin: 2em 2em 0 2em;	
+}
 .main-content {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 1em;
+	margin: 0em 1em 1em 1em;
 	.card {
 		margin: 1em;
 		flex-grow: 1;
