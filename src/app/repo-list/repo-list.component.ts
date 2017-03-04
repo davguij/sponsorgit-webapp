@@ -40,7 +40,7 @@ export class RepoListComponent implements OnInit {
   }
 
   isLangSelected(lang) {
-    return this.filteredLangs.indexOf(lang) === -1;
+    return this.filteredLangs.indexOf(lang) !== -1;
   }
 
 }

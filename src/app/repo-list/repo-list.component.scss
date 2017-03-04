@@ -1,5 +1,12 @@
 .filters {
-	margin: 2em 2em 0 2em;	
+	margin: 2em 2em 0 2em;
+	md-chip {
+		font-family: Roboto,"Helvetica Neue",sans-serif;
+	}
+	.selected {
+		background-color: tomato;
+		color: white;
+	}
 }
 .main-content {
 	display: flex;
