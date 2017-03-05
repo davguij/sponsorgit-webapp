@@ -46,10 +46,11 @@ describe('RepoListService', () => {
 
   // tslint:disable-next-line:no-shadowed-variable
   it('should retrieve valid data', inject([RepoListService, MockBackend], (service: RepoListService, mock: MockBackend) => {
-    let mockResponse = new Response(new ResponseOptions(repoList));
+    let mockResponse = new Response(new ResponseOptions({ 'body': JSON.stringify(repoList) }));
     mock.connections.subscribe(c => c.mockRespond(mockResponse));
     service.getRepoList('javascript').subscribe((response) => {
-      expect(response).toBeArray();
+      expect(response).toBeTruthy();
+      expect(response.length).toBeTruthy();
     });
   }));
 
