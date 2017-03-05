@@ -10,7 +10,7 @@ export class RepoListService {
   constructor(private http: Http) { }
 
   getRepoList(...languages) {
-    let url = `http://localhost:8080/repos?lang=${languages}`;
+    let url = `https://sponsorgit-api.herokuapp.com/repos?lang=${languages}`;
     return this.http.get(url)
       .map(response => {
         let json = response.json();
