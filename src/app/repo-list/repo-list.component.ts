@@ -49,4 +49,8 @@ export class RepoListComponent implements OnInit {
     return this.filteredLangs.indexOf(lang) !== -1;
   }
 
+  goToRepoPage(repoUrl) {
+    window.open(repoUrl, '_blank');
+  }
+
 }

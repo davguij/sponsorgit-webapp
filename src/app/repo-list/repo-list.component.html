@@ -16,9 +16,13 @@
         {{repo.description}}
       </p>
     </md-card-content>
-    <!--<md-card-actions>
-      <button md-button>LIKE</button>
-      <button md-button>SHARE</button>
-    </md-card-actions>-->
+    <md-card-actions>
+      <button md-icon-button (click)="goToRepoPage(repo.html_url)">
+        <md-icon>open_in_new</md-icon>
+      </button>
+      <button md-icon-button>
+        <md-icon>favorite_border</md-icon>
+      </button>
+    </md-card-actions>
   </md-card>
 </div>
