@@ -1,10 +1,6 @@
 <div class="filters">
   <md-chip-list>
-    <md-chip id="javascript" [ngClass]="{'selected': isLangSelected('javascript')}" (click)="clickOnLang($event)">JavaScript</md-chip>
-    <md-chip id="java" [ngClass]="{'selected': isLangSelected('java')}" (click)="clickOnLang($event)">Java</md-chip>
-    <md-chip id="ruby" [ngClass]="{'selected': isLangSelected('ruby')}" (click)="clickOnLang($event)">Ruby</md-chip>
-    <!--<md-chip color="primary" selected="true">Primary fish</md-chip>-->
-    <!--<md-chip color="accent" selected="true">Accent fish</md-chip>-->
+    <md-chip *ngFor="let lang of allLangs" [id]="lang" [ngClass]="{'selected': isLangSelected(lang)}" (click)="clickOnLang($event)">{{lang}}</md-chip>
   </md-chip-list>
 </div>
 

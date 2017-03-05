@@ -10,19 +10,26 @@ import { RepoListService } from 'app/repo-list/repo-list.service';
 })
 export class RepoListComponent implements OnInit {
 
-  filteredLangs: Array<string> = [
+  allLangs: Array<string> = [
     'javascript',
     'java',
-    'ruby'
+    'ruby',
+    'go',
+    'html',
+    'css',
+    'typescript'
   ];
+
+  filteredLangs: Array<string> = [];
 
   repoList;
 
   constructor(private repolistSrv: RepoListService) { }
 
   ngOnInit() {
+    this.allLangs.sort();
+    this.filteredLangs = this.allLangs.slice();
     this.getRepos(this.filteredLangs);
-    console.log(this.filteredLangs);
   }
 
   getRepos(...langs) {
@@ -35,7 +42,6 @@ export class RepoListComponent implements OnInit {
     } else {
       _.pull(this.filteredLangs, $event.target.id);
     }
-    console.log(this.filteredLangs);
     this.getRepos(this.filteredLangs);
   }
 
