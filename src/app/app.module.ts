@@ -2,26 +2,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { AppRoutes } from './app.routes';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
 import { RepoListComponent } from './repo-list/repo-list.component';
 import { RepoListService } from './repo-list/repo-list.service';
+import { RepoDetailComponent } from './repo-detail/repo-detail.component';
+import { RepoDetailService } from './repo-detail/repo-detail.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RepoListComponent
+    RepoListComponent,
+    RepoDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(AppRoutes)
   ],
   providers: [
-    RepoListService
+    RepoListService,
+    RepoDetailService
   ],
   bootstrap: [AppComponent]
 })

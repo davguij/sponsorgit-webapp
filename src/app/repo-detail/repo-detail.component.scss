@@ -1,0 +1,27 @@
+.main-detail-content {
+    margin: 1em;
+    .big-card {
+        md-card-header {
+            height: 60px;
+            margin-left: -8px;
+            md-card-title {
+                font-size: 1.66em;
+                width: 80vw;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            md-card-subtitle {
+                font-size: 1.33em;
+                margin-top: -0.65em;
+                width: 80vw;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        md-chip {
+            margin-right: 0.5em;
+        }
+    }
+}
