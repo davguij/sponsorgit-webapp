@@ -1,9 +1,20 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { RepoDetailComponent } from './repo-detail.component';
+import { RepoDetailService } from './repo-detail.service';
+
+class MockRepoDetailSrv {
+  getRepoDetails(owner, repo) {
+    return new Observable(subscriber => {
+      subscriber.next(false);
+    });
+  }
+}
 
 describe('RepoDetailComponent', () => {
   let component: RepoDetailComponent;
@@ -11,9 +22,18 @@ describe('RepoDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RepoDetailComponent ]
+      declarations: [RepoDetailComponent],
+      providers: [
+        { provide: RepoDetailService, useClass: MockRepoDetailSrv },
+        {
+          provide: ActivatedRoute, useValue: {
+            params: Observable.of({ owner: 'angular', repo: 'angular' })
+          }
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
