@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { RepoDetailService } from './repo-detail.service';
 import { RepoDetail } from 'app/repo-detail/repo-detail.interface';
 
@@ -8,20 +9,25 @@ import { RepoDetail } from 'app/repo-detail/repo-detail.interface';
   templateUrl: './repo-detail.component.html',
   styleUrls: ['./repo-detail.component.scss']
 })
-export class RepoDetailComponent implements OnInit {
+export class RepoDetailComponent implements OnInit, OnDestroy {
 
   repo: RepoDetail;
-  realRepo;
+  private _subscriptions: Array<Subscription> = [];
 
   constructor(private repoDetailSrv: RepoDetailService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.repoDetailSrv.getRepoDetails(params['owner'], params['repo'])
+    this._subscriptions.push(this.route.params.subscribe((params) => {
+      this._subscriptions.push(this.repoDetailSrv.getRepoDetails(params['owner'], params['repo'])
         .subscribe((resp) => {
           this.repo = resp;
-          console.log(resp);
-        });
+        }));
+    }));
+  }
+
+  ngOnDestroy() {
+    this._subscriptions.forEach(element => {
+      element.unsubscribe();
     });
   }
 
