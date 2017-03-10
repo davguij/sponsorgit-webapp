@@ -3,7 +3,8 @@
     <button md-raised-button (click)="sidenav.open()">Menu</button> sponsorgit
   </md-toolbar>
   <md-sidenav #sidenav mode="push">
-    comming soon
+    <button md-raised-button (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+    <button md-raised-button (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
   </md-sidenav>
   <router-outlet></router-outlet>
 </md-sidenav-container>
