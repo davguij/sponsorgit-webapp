@@ -6,11 +6,19 @@ let Auth0Lock: any = require('auth0-lock').default;
 export class AuthService {
   // Configure Auth0
   lock = new Auth0Lock('l7gMUNWLlesZzUOr6ZxSKFtc5JYU8uW6', 'sponsorgit.eu.auth0.com', {});
+  userProfile: Object;
 
   constructor() {
     // Add callback for lock `authenticated` event
     this.lock.on('authenticated', (authResult) => {
       localStorage.setItem('id_token', authResult.idToken);
+      this.lock.getProfile(authResult.idToken, (error, profile) => {
+        if (error) {
+          console.error(error);
+          return;
+        }
+        this.userProfile = profile;
+      });
     });
   }
 
@@ -25,8 +33,24 @@ export class AuthService {
     return tokenNotExpired();
   }
 
+  public getUserProfile() {
+    if (!!this.userProfile) {
+      return this.userProfile;
+    } else {
+      this.lock.getProfile(localStorage.getItem('id_token'), (error, profile) => {
+        if (error) {
+          console.error(error);
+          return;
+        }
+        this.userProfile = profile;
+        return this.userProfile;
+      });
+    }
+  }
+
   public logout() {
     // Remove token from localStorage
     localStorage.removeItem('id_token');
+    this.userProfile = undefined;
   }
 }
