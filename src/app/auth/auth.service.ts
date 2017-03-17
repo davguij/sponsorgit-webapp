@@ -37,14 +37,18 @@ export class AuthService {
     if (!!this.userProfile) {
       return this.userProfile;
     } else {
-      this.lock.getProfile(localStorage.getItem('id_token'), (error, profile) => {
-        if (error) {
-          console.error(error);
-          return;
-        }
-        this.userProfile = profile;
-        return this.userProfile;
-      });
+      if (this.authenticated() === true) {
+        this.lock.getProfile(localStorage.getItem('id_token'), (error, profile) => {
+          if (error) {
+            console.error(error);
+            return;
+          }
+          this.userProfile = profile;
+          return this.userProfile;
+        });
+      } else {
+        return {};
+      }
     }
   }
 

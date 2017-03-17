@@ -5,6 +5,16 @@
   <md-sidenav #sidenav mode="push">
     <button md-raised-button (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
     <button md-raised-button (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+    <div *ngIf="auth.authenticated() && auth.userProfile">
+      <h4>You are logged in</h4>
+      <h3>Profile</h3>
+      <img [src]="auth.userProfile.picture" alt="" class="profile-img">
+      <p><strong>Name: </strong> {{auth.userProfile.name}}</p>
+      <p><strong>Email: </strong> {{auth.userProfile.email}}</p>
+      <p><strong>Nickname: </strong> {{auth.userProfile.nickname}}</p>
+      <p><strong>Created At: </strong> {{auth.userProfile.created_at}}</p>
+      <p><strong>Updated At: </strong> {{auth.userProfile.updated_at}}</p>
+    </div>
   </md-sidenav>
   <router-outlet></router-outlet>
 </md-sidenav-container>
