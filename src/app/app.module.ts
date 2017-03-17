@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routes';
 import { MaterialModule } from '@angular/material';
 
+import { AuthModule } from './auth/auth.module';
+
 import { AppComponent } from './app.component';
 
 import { RepoListComponent } from './repo-list/repo-list.component';
@@ -24,7 +26,9 @@ import { RepoDetailService } from './repo-detail/repo-detail.service';
     FormsModule,
     HttpModule,
     MaterialModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+
+    AuthModule
   ],
   providers: [
     RepoListService,
