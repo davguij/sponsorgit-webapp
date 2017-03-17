@@ -22,3 +22,6 @@ notifications:
     on_success: always # default: always
     on_failure: never # default: always
     on_start: never   # default: never
+  slack:
+    rooms:
+      - davguij:otGBFdokD90c9WiHxQep2IGI#sponsorgit-webapp
