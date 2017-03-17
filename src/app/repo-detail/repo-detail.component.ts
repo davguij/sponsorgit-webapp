@@ -12,6 +12,7 @@ import { RepoDetail } from 'app/repo-detail/repo-detail.interface';
 export class RepoDetailComponent implements OnInit, OnDestroy {
 
   repo: RepoDetail;
+  sponsors;
   private _subscriptions: Array<Subscription> = [];
 
   constructor(private repoDetailSrv: RepoDetailService, private route: ActivatedRoute) { }
@@ -21,6 +22,10 @@ export class RepoDetailComponent implements OnInit, OnDestroy {
       this._subscriptions.push(this.repoDetailSrv.getRepoDetails(params['owner'], params['repo'])
         .subscribe((resp) => {
           this.repo = resp;
+        }));
+      this._subscriptions.push(this.repoDetailSrv.getRepoSponsors(params['owner'], params['repo'])
+        .subscribe((resp) => {
+          this.sponsors = resp;
         }));
     }));
   }

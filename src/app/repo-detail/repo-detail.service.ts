@@ -12,8 +12,8 @@ export class RepoDetailService {
     getRepoDetails(owner: string, repo: string): Observable<RepoDetail> {
         let url = `https://sponsorgit-api.herokuapp.com/repos/${owner}/${repo}`;
         return Observable.forkJoin(
-            this.http.get(`https://sponsorgit-api.herokuapp.com/repos/${owner}/${repo}`).map(resp => resp.json()),
-            this.http.get(`https://sponsorgit-api.herokuapp.com/repos/${owner}/${repo}/languages`).map(resp => resp.json())
+            this.http.get(url).map(resp => resp.json()),
+            this.http.get(url + `/languages`).map(resp => resp.json())
         ).map((json) => {
             let languages: Array<string> = [];
             for (let language in json[1].data) {
@@ -28,5 +28,10 @@ export class RepoDetailService {
                 description: json[0].data.description
             };
         });
+    }
+
+    getRepoSponsors(owner: string, repo: string): Observable<RepoDetail> {
+        let url = `http://localhost:8080/repos/${owner}/${repo}/sponsors`;
+        return this.http.get(url).map(resp => resp.json());
     }
 }

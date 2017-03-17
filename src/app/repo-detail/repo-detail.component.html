@@ -10,4 +10,42 @@
       </md-chip-list>
     </md-card-content>
   </md-card>
+  <div class="sponsors-container">
+    <md-card>
+      <md-card-header>
+        <md-card-title>Platinum</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <div *ngFor="let item of sponsors?.platinum">
+          <!--<md-icon md-list-avatar>folder</md-icon>-->
+          <!--<h4 md-line>{{folder.name}}</h4>-->
+          <p md-line>{{item.name}}</p>
+        </div>
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-header>
+        <md-card-title>Gold</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <div *ngFor="let item of sponsors?.gold">
+          <!--<md-icon md-list-avatar>folder</md-icon>-->
+          <!--<h4 md-line>{{folder.name}}</h4>-->
+          <p md-line>{{item.name}}</p>
+        </div>
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-header>
+        <md-card-title>Silver</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <div *ngFor="let item of sponsors?.silver">
+          <!--<md-icon md-list-avatar>folder</md-icon>-->
+          <!--<h4 md-line>{{folder.name}}</h4>-->
+          <p md-line>{{item.name}}</p>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
 </div>
